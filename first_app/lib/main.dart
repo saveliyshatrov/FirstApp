@@ -33,7 +33,7 @@ class PageOne extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.orange, Color.fromRGBO(0, 0, 0, 1)]
+            colors: [Color.fromRGBO(0, 0, 0, 1), Color.fromRGBO(0, 0, 0, 1)]
           )
         ),
         padding: EdgeInsets.only(top:7),
