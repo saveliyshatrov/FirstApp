@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,6 +16,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//rgb(234,76,137)
+Widget applicationBar(String text) {
+  return AppBar(
+    title: Text(
+      text,
+      style: TextStyle(color: Color.fromRGBO(234,76,137, 1)),
+    ),
+    backgroundColor: Color.fromRGBO(255,255,255, 0.8),
+    elevation: 0.0,
+    flexibleSpace: Container(
+      child: ClipRRect( // make sure we apply clip it properly
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+          child: Container(
+            color: Color.fromRGBO(0, 0, 0, 0),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 Widget createElemForCarousel(
     String name, Color backgroundColor, Color fontColor) {
   return Builder(
@@ -23,7 +47,9 @@ Widget createElemForCarousel(
             debugPrint("$name");
           },
           child: Container(
-              width: MediaQuery.of(context).size.width,
+              alignment: Alignment(.0, .0),
+              //width: MediaQuery.of(context).size.width,
+              //height: MediaQuery.of(context).size.height,
               margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
               decoration: BoxDecoration(
                 color: backgroundColor,
@@ -37,10 +63,11 @@ Widget createElemForCarousel(
                   ),
                 ],
               ),
-              child: Center(
-                  child: Text(
+              child: Align(
+                alignment: Alignment(0.8, 0.8),
+                child: Text(
                 '$name',
-                style: TextStyle(fontSize: 30.0, color: fontColor),
+                style: TextStyle(fontSize: 20.0, color: fontColor),
               ))));
     },
   );
@@ -50,14 +77,8 @@ class PageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
-      appBar: AppBar(
-        title: Text(
-          'Студак',
-          style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1)),
-        ),
-        backgroundColor: Colors.orange,
-      ),
+      appBar: applicationBar("StuDuck"),
+      extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -78,12 +99,6 @@ class PageOne extends StatelessWidget {
                 createElemForCarousel("Еще что-то", Colors.blue, Colors.white),
               ],
             ),
-            /*Text("Новинки",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 20.0,
-              ),
-            ),*/
             Container(
               child: ListTile(
                   onTap: () {
