@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
 //rgb(234,76,137)
 Widget applicationBar(String text) {
   return AppBar(
+    brightness: Brightness.light,
     title: Text(
       text,
       style: TextStyle(color: Color.fromRGBO(234,76,137, 1)),
@@ -37,7 +38,7 @@ Widget applicationBar(String text) {
     ),
   );
 }
-
+//https://retail-loyalty.org/upload/iblock/fa1/7bf357334417f3f9649b96b6a0e66eee.jpg
 Widget createElemForCarousel(
     String name, Color backgroundColor, Color fontColor) {
   return Builder(
