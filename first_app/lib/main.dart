@@ -20,14 +20,21 @@ class MyApp extends StatelessWidget {
 Widget applicationBar(String text) {
   return AppBar(
     brightness: Brightness.light,
-    title: Text(
-      text,
-      style: TextStyle(color: Color.fromRGBO(234,76,137, 1)),
+    title: Align(
+      alignment: Alignment.center,
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Color.fromRGBO(234, 76, 137, 1),
+          fontSize: 25,
+          ),
+      ),
     ),
-    backgroundColor: Color.fromRGBO(255,255,255, 0.8),
+    backgroundColor: Color.fromRGBO(255, 255, 255, 0.8),
     elevation: 0.0,
     flexibleSpace: Container(
-      child: ClipRRect( // make sure we apply clip it properly
+      child: ClipRRect(
+        // make sure we apply clip it properly
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
           child: Container(
@@ -38,7 +45,37 @@ Widget applicationBar(String text) {
     ),
   );
 }
-//https://retail-loyalty.org/upload/iblock/fa1/7bf357334417f3f9649b96b6a0e66eee.jpg
+
+Widget createElemList(String title, String subTitle, Icon leadigIcon, Icon tailIcon, Color colorType) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 11.0, vertical: 6),
+    decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: colorType,
+                  width: 2,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+              ),
+    child: ListTile(
+        onTap: () {
+          debugPrint("$title");
+        },
+        leading: leadigIcon,
+        title: Text('$title'),
+        subtitle: Text('$subTitle'),
+        trailing: tailIcon),
+  );
+}
+
 Widget createElemForCarousel(
     String name, Color backgroundColor, Color fontColor) {
   return Builder(
@@ -65,11 +102,11 @@ Widget createElemForCarousel(
                 ],
               ),
               child: Align(
-                alignment: Alignment(0.8, 0.8),
-                child: Text(
-                '$name',
-                style: TextStyle(fontSize: 20.0, color: fontColor),
-              ))));
+                  alignment: Alignment(0.8, 0.8),
+                  child: Text(
+                    '$name',
+                    style: TextStyle(fontSize: 20.0, color: fontColor),
+                  ))));
     },
   );
 }
@@ -93,26 +130,20 @@ class PageOne extends StatelessWidget {
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
               ),
               items: [
-                createElemForCarousel(
-                    "Кафе и Рестораны", Colors.red, Colors.white),
-                createElemForCarousel("Антикафе", Colors.orange, Colors.white),
-                createElemForCarousel("Бары", Colors.green, Colors.white),
-                createElemForCarousel("Еще что-то", Colors.blue, Colors.white),
+                createElemForCarousel("Поесть", Colors.red, Colors.white),
+                createElemForCarousel("Поиграть", Colors.orange, Colors.white),
+                createElemForCarousel("Погулять", Colors.green, Colors.white),
+                createElemForCarousel("Посмотреть", Colors.blue, Colors.white),
               ],
             ),
-            Container(
-              child: ListTile(
-                  onTap: () {
-                    debugPrint("I was clicked");
-                  },
-                  leading: Icon(
-                    Icons.local_bar,
-                    size: 56,
-                  ),
-                  title: Text('Two-line ListTile'),
-                  subtitle: Text('Here is a second line'),
-                  trailing: Icon(Icons.fastfood)),
-            ),
+            createElemList("Title 11", "Subtitle 21", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.red),
+            createElemList("Title 12", "Subtitle 22", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.orange),
+            createElemList("Title 13", "Subtitle 23", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.green),
+            createElemList("Title 14", "Subtitle 24", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.blue),
+            createElemList("Title 15", "Subtitle 25", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.green),
+            createElemList("Title 16", "Subtitle 26", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.green),
+            createElemList("Title 17", "Subtitle 27", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.blue),
+            createElemList("Title 18", "Subtitle 28", Icon(Icons.accessibility_new, size: 56), Icon(Icons.account_balance_wallet), Colors.red),
           ],
         ),
       ),
